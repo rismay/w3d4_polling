@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417181425) do
+ActiveRecord::Schema.define(version: 20140417183417) do
 
   create_table "answer_choices", force: true do |t|
     t.text     "text",        null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140417181425) do
 
   create_table "polls", force: true do |t|
     t.string   "title",      null: false
-    t.integer  "author",     null: false
+    t.integer  "author_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
