@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
     foreign_key: :responder_id,
     primary_key: :id
 
+  validates :user_name, presence: true, uniqueness: true
 end

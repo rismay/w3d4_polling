@@ -8,4 +8,7 @@ class Question < ActiveRecord::Base;
   class_name: Poll,
   foreign_key: :question_id,
   primary_key: :id
+
+  validates :text, :poll_id, presence: true
+
 end

@@ -8,4 +8,6 @@ class AnswerChoice < ActiveRecord::Base
     class_name: Response,
     foreign_key: :answer_id,
     primary_key: :id
+
+  validates :text, :question_id, presence: true
 end
