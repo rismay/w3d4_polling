@@ -9,8 +9,10 @@ class Response < ActiveRecord::Base
     foreign_key: :responder_id,
     primary_key: :id
 
+
   validates :responder_id, :answer_id, presence: true
   validate :respondent_has_not_already_answered_question
+  validate :respondent_is_not_poll_author
 
   private
   def respondent_has_not_already_answered_question
@@ -42,6 +44,19 @@ class Response < ActiveRecord::Base
         errors[:base] << 'Already answered that question'
       end
     end
+  end
 
+  def respondent_is_not_poll_author
+    poll = Poll.joins(
+      questions: :answer_choices
+    ).where(
+      'answer_choices.id = ?', answer_id
+    )
+
+    if poll.first.author_id == responder_id
+      errors[:base] << <<-MSG
+      Cheater, cheater pumpkin eater! (Can't respond to your own poll)
+      MSG
+    end
   end
 end

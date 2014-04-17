@@ -9,5 +9,8 @@ class Poll < ActiveRecord::Base
     foreign_key: :poll_id,
     primary_key: :id
 
+  has_many :answer_choices, through: :questions
+  has_many :responses, through: :answer_choices
+
   validates :author_id, :title, presence: true
 end
