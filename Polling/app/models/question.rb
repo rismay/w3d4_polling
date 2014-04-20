@@ -25,7 +25,9 @@ class Question < ActiveRecord::Base;
     ON a.id = b.ans_id
     WHERE a.question_id = ?
     SQL
+
     answers_with_counts = AnswerChoice.find_by_sql([query, self.id])
+
     answers_with_counts.map do |ans|
       [ans.text, ans.response_count]
     end
